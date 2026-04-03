@@ -1,0 +1,4 @@
+﻿  NaiveBayesClassifier.cpp
+C:\Users\neliu\source\repos\NaiveBayes\NaiveBayes\NaiveBayesClassifier.cpp(38,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\neliu\source\repos\NaiveBayes\NaiveBayes\NaiveBayesClassifier.cpp(119,24): warning C4018: '<': signed/unsigned mismatch
+  NaiveBayes.vcxproj -> C:\Users\neliu\source\repos\NaiveBayes\Debug\NaiveBayes.exe

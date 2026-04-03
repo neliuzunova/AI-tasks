@@ -1,0 +1,29 @@
+﻿  TravelingSalesmanProblem.cpp
+C:\Users\neliu\source\repos\TravelingSalesmanProblem\TravelingSalesmanProblem\TravelingSalesmanProblem.cpp(97,15): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\neliu\source\repos\TravelingSalesmanProblem\TravelingSalesmanProblem\TravelingSalesmanProblem.cpp(98,15): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\neliu\source\repos\TravelingSalesmanProblem\TravelingSalesmanProblem\TravelingSalesmanProblem.cpp(127,38): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\Users\neliu\source\repos\TravelingSalesmanProblem\TravelingSalesmanProblem\TravelingSalesmanProblem.cpp(127,24): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\Users\neliu\source\repos\TravelingSalesmanProblem\TravelingSalesmanProblem\TravelingSalesmanProblem.cpp(128,34): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\Users\neliu\source\repos\TravelingSalesmanProblem\TravelingSalesmanProblem\TravelingSalesmanProblem.cpp(128,24): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\Users\neliu\source\repos\TravelingSalesmanProblem\TravelingSalesmanProblem\TravelingSalesmanProblem.cpp(129,35): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\Users\neliu\source\repos\TravelingSalesmanProblem\TravelingSalesmanProblem\TravelingSalesmanProblem.cpp(129,25): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\Users\neliu\source\repos\TravelingSalesmanProblem\TravelingSalesmanProblem\TravelingSalesmanProblem.cpp(130,34): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\Users\neliu\source\repos\TravelingSalesmanProblem\TravelingSalesmanProblem\TravelingSalesmanProblem.cpp(130,24): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\Users\neliu\source\repos\TravelingSalesmanProblem\TravelingSalesmanProblem\TravelingSalesmanProblem.cpp(131,34): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\Users\neliu\source\repos\TravelingSalesmanProblem\TravelingSalesmanProblem\TravelingSalesmanProblem.cpp(131,24): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\Users\neliu\source\repos\TravelingSalesmanProblem\TravelingSalesmanProblem\TravelingSalesmanProblem.cpp(132,33): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\Users\neliu\source\repos\TravelingSalesmanProblem\TravelingSalesmanProblem\TravelingSalesmanProblem.cpp(132,24): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\Users\neliu\source\repos\TravelingSalesmanProblem\TravelingSalesmanProblem\TravelingSalesmanProblem.cpp(133,33): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\Users\neliu\source\repos\TravelingSalesmanProblem\TravelingSalesmanProblem\TravelingSalesmanProblem.cpp(133,24): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\Users\neliu\source\repos\TravelingSalesmanProblem\TravelingSalesmanProblem\TravelingSalesmanProblem.cpp(134,34): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\Users\neliu\source\repos\TravelingSalesmanProblem\TravelingSalesmanProblem\TravelingSalesmanProblem.cpp(134,24): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\Users\neliu\source\repos\TravelingSalesmanProblem\TravelingSalesmanProblem\TravelingSalesmanProblem.cpp(135,34): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\Users\neliu\source\repos\TravelingSalesmanProblem\TravelingSalesmanProblem\TravelingSalesmanProblem.cpp(135,24): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\Users\neliu\source\repos\TravelingSalesmanProblem\TravelingSalesmanProblem\TravelingSalesmanProblem.cpp(136,34): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\Users\neliu\source\repos\TravelingSalesmanProblem\TravelingSalesmanProblem\TravelingSalesmanProblem.cpp(136,24): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\Users\neliu\source\repos\TravelingSalesmanProblem\TravelingSalesmanProblem\TravelingSalesmanProblem.cpp(137,33): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\Users\neliu\source\repos\TravelingSalesmanProblem\TravelingSalesmanProblem\TravelingSalesmanProblem.cpp(137,24): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\Users\neliu\source\repos\TravelingSalesmanProblem\TravelingSalesmanProblem\TravelingSalesmanProblem.cpp(138,34): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\Users\neliu\source\repos\TravelingSalesmanProblem\TravelingSalesmanProblem\TravelingSalesmanProblem.cpp(138,24): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\Users\neliu\source\repos\TravelingSalesmanProblem\TravelingSalesmanProblem\TravelingSalesmanProblem.cpp(160,20): warning C4018: '<': signed/unsigned mismatch
+  TravelingSalesmanProblem.vcxproj -> C:\Users\neliu\source\repos\TravelingSalesmanProblem\Debug\TravelingSalesmanProblem.exe

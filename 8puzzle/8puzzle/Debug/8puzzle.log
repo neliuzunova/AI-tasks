@@ -1,0 +1,7 @@
+﻿  8puzzle.cpp
+C:\Users\neliu\source\repos\8puzzle\8puzzle\8puzzle.cpp(92,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\neliu\source\repos\8puzzle\8puzzle\8puzzle.cpp(94,25): warning C4018: '<': signed/unsigned mismatch
+C:\Users\neliu\source\repos\8puzzle\8puzzle\8puzzle.cpp(143,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\neliu\source\repos\8puzzle\8puzzle\8puzzle.cpp(251,19): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\Users\neliu\source\repos\8puzzle\8puzzle\8puzzle.cpp(241): warning C4715: 'solve': not all control paths return a value
+  8puzzle.vcxproj -> C:\Users\neliu\source\repos\8puzzle\Debug\8puzzle.exe
