@@ -1,0 +1,175 @@
+import numpy as np
+import matplotlib.pyplot as plt
+import matplotlib.colors as mcolors
+
+def extract_goal(kb):
+    return tuple([int(i) for i in kb[0].split("(")[1].split(")")[0].split(",")])
+
+def print_knowledge(kb):
+    for i in range(0, len(kb), 2):
+        if i + 1 < len(kb):
+            print(kb[i], kb[i + 1])
+        else:
+            print(kb[i])
+
+
+open_cells = {
+    'Open(0,0)' : True, 'Open(0,1)' : False, 'Open(0,2)' : True, 'Open(0,3)' : True,  'Open(0,4)' : True,  'Open(0,5)' : True,
+    'Open(1,0)' : True, 'Open(1,1)' : True,  'Open(1,2)' : True, 'Open(1,3)' : True,  'Open(1,4)' : True,  'Open(1,5)' : True,
+    'Open(2,0)' : True, 'Open(2,1)' : False, 'Open(2,2)' : True, 'Open(2,3)' : False, 'Open(2,4)' : True,  'Open(2,5)' : True,
+    'Open(3,0)' : True, 'Open(3,1)' : False, 'Open(3,2)' : True, 'Open(3,3)' : True,  'Open(3,4)' : False, 'Open(3,5)' : True,
+    'Open(4,0)' : True, 'Open(4,1)' : True,  'Open(4,2)' : True, 'Open(4,3)' : True,  'Open(4,4)' : False, 'Open(4,5)' : True
+}
+
+visited_cells = {
+    'Visited(0,0)' : False, 'Visited(0,1)' : False, 'Visited(0,2)' : False, 'Visited(0,3)' : False, 'Visited(0,4)' : False, 'Visited(0,5)' : False,
+    'Visited(1,0)' : False, 'Visited(1,1)' : False, 'Visited(1,2)' : False, 'Visited(1,3)' : False, 'Visited(1,4)' : False, 'Visited(1,5)' : False,
+    'Visited(2,0)' : False, 'Visited(2,1)' : False, 'Visited(2,2)' : False, 'Visited(2,3)' : False, 'Visited(2,4)' : False, 'Visited(2,5)' : False,
+    'Visited(3,0)' : False, 'Visited(3,1)' : False, 'Visited(3,2)' : False, 'Visited(3,3)' : False, 'Visited(3,4)' : False, 'Visited(3,5)' : False,
+    'Visited(4,0)' : False, 'Visited(4,1)' : False, 'Visited(4,2)' : False, 'Visited(4,3)' : False, 'Visited(4,4)' : False, 'Visited(4,5)' : True
+}
+
+# down right up left
+movement_rules = [
+    "At(x,y) & Open(x,y) & Open(x+1,y) & ~Visited(x+1,y) => Move(x,y,x+1,y)",
+    "At(x,y) & Open(x,y) & Open(x,y+1) & ~Visited(x,y+1) => Move(x,y,x,y+1)",
+    "At(x,y) & Open(x,y) & Open(x-1,y) & ~Visited(x-1,y) => Move(x,y,x-1,y)",
+    "At(x,y) & Open(x,y) & Open(x,y-1) & ~Visited(x,y-1) => Move(x,y,x,y-1)"
+]
+
+# right down left up
+"""movement_rules = [
+    "At(x,y) & Open(x,y) & Open(x,y+1) & ~Visited(x,y+1) => Move(x,y,x,y+1)",
+    "At(x,y) & Open(x,y) & Open(x-1,y) & ~Visited(x-1,y) => Move(x,y,x-1,y)",
+    "At(x,y) & Open(x,y) & Open(x,y-1) & ~Visited(x,y-1) => Move(x,y,x,y-1)",
+    "At(x,y) & Open(x,y) & Open(x+1,y) & ~Visited(x+1,y) => Move(x,y,x+1,y)"
+]"""
+
+# up right down left
+"""movement_rules = [
+    "At(x,y) & Open(x,y) & Open(x-1,y) & ~Visited(x-1,y) => Move(x,y,x-1,y)",
+    "At(x,y) & Open(x,y) & Open(x,y+1) & ~Visited(x,y+1) => Move(x,y,x,y+1)",
+    "At(x,y) & Open(x,y) & Open(x+1,y) & ~Visited(x+1,y) => Move(x,y,x+1,y)",
+    "At(x,y) & Open(x,y) & Open(x,y-1) & ~Visited(x,y-1) => Move(x,y,x,y-1)"  
+]"""
+
+kb = list(["At(0,0)", "Goal(4,5)", "At(4,5)"])
+
+def apply_rules(current_x, current_y, rules):
+    temp_rules = list(rules)
+    for i in range(0, len(temp_rules)):
+        if '+' in temp_rules[i]:
+            if temp_rules[i].split('+')[0][-1] == 'x':
+                temp_rules[i] = temp_rules[i].replace('x+1', str(current_x)).replace('x', str(current_x - 1)).replace('y', str(current_y))
+            elif temp_rules[i].split('+')[0][-1] == 'y':
+                temp_rules[i] = temp_rules[i].replace('y+1', str(current_y)).replace('x', str(current_x)).replace('y', str(current_y - 1))
+        elif '-' in temp_rules[i]:
+            if temp_rules[i].split('-')[0][-1] == 'x':
+                temp_rules[i] = temp_rules[i].replace('x-1', str(current_x)).replace('x', str(current_x + 1)).replace('y', str(current_y))
+            elif temp_rules[i].split('-')[0][-1] == 'y':
+                temp_rules[i] = temp_rules[i].replace('y-1', str(current_y)).replace('x', str(current_x)).replace('y', str(current_y + 1))
+    return temp_rules
+
+def backward_chain():
+    backtrack_index = 1
+
+    while True:
+        moved = False
+        current_x, current_y = tuple([int(i) for i in kb[-1].split("(")[1].split(")")[0].split(",")])
+        temp_rules = apply_rules(current_x, current_y, movement_rules)
+
+        for rule in temp_rules:
+            previous_cell = rule.split('=>')[1].strip().split('(')[1].split(')')[0].split(',')[0:2]
+            px = int(previous_cell[0])
+            py = int(previous_cell[1])
+            if ((0 <= px < 5) and (0 <= py < 6)):
+                antecedent, consequent = rule.split("=>")
+                antecedent_facts = antecedent.strip().split("&")
+
+                if open_cells[antecedent_facts[1].strip()] and not visited_cells["Visited" + antecedent_facts[0].strip().split('t')[1]]:
+                    kb.append(consequent.strip())                   
+                    kb.append(antecedent_facts[0].strip())
+                    visited_cells["Visited" + antecedent_facts[0].strip().split('t')[1]] = True
+                    moved = True
+                    backtrack_index = 1
+                    break
+
+        if not moved:
+            i = -1
+            move = 1
+            previous_step = []
+            while i != -(len(kb) + 1):
+                if kb[i][0] == 'M':
+                    if move == backtrack_index:
+                        previous_step = kb[i].split("(")[1].split(")")[0].split(",")[2:4]
+                        break
+                    else:
+                        move += 1
+                i -= 1
+
+            if not previous_step:
+                print("There is no path from this starting cell to the goal cell")
+                return
+            
+            kb.append(f"Backtracking Move({current_x},{current_y},{previous_step[0]},{previous_step[1]})")
+            kb.append(f"At({previous_step[0]},{previous_step[1]})")
+            backtrack_index += 1
+            continue
+
+        if visited_cells[f"Visited{str(extract_goal(kb)).replace(' ', '')}"]:
+            print()
+            #kb.reverse()
+            print_knowledge(kb[:-2])
+            print("Goal reached!")
+            print()
+            return
+    
+backward_chain()
+
+# Visualization
+maze = np.zeros((5, 6))  # 5 rows and 6 columns
+visualization = np.zeros_like(maze)
+
+# Coloring the visited cells (Visited(x, y) = True)
+visited = [coords for coords, status in visited_cells.items() if status]
+for coord in visited:
+    x, y = map(int, coord.strip('Visited()').split(','))  # Extract x, y from string coordinates
+    visualization[x, y] = 3  # 3 = visited cell (yellow)
+
+# Coloring the open cells (Open(x, y) = False -> obstacle)
+obstacles = [coords for coords, status in open_cells.items() if not status]
+for coord in obstacles:
+    x, y = map(int, coord.strip('Open()').split(','))  # Extract x, y from string coordinates
+    visualization[x, y] = 4  # 4 = obstacle (blue)
+
+# Start and end cells (green)
+start = (0, 0)  # Starting cell
+end = (4, 5)    # Ending cell
+visualization[start] = 2  # 2 = start/end cell (green)
+visualization[end] = 2    # 2 = start/end cell (green)
+
+# Creating the image
+fig, ax = plt.subplots(figsize=(5, 6))
+
+# Define a colormap with fixed color values for each category
+cmap = mcolors.ListedColormap(['white', 'gray', 'green', 'yellow', 'red', 'blue'])
+bounds = [0, 1, 2, 3, 4, 5]  # Values for different categories
+norm = mcolors.BoundaryNorm(bounds, cmap.N)
+
+# Display the maze
+cax = ax.imshow(visualization, cmap=cmap, norm=norm)
+
+# Title and axis settings
+ax.set_title('Maze Visualization')
+ax.set_xticks(np.arange(0, maze.shape[1], 1))  # Set x-axis ticks to start from 0
+ax.set_yticks(np.arange(0, maze.shape[0], 1))  # Set y-axis ticks to start from 0
+ax.set_xticklabels(np.arange(0, maze.shape[1]))  # Label x-axis ticks starting from 0
+ax.set_yticklabels(np.arange(0, maze.shape[0]))  # Label y-axis ticks starting from 0
+
+# Add grid lines for the matrix
+ax.set_xticks(np.arange(maze.shape[1] + 1) - 0.5, minor=True)
+ax.set_yticks(np.arange(maze.shape[0] + 1) - 0.5, minor=True)
+ax.grid(which='minor', color='black', linestyle='-', linewidth=1)
+
+# Show the plot
+plt.show()
